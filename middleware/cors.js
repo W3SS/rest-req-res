@@ -5,9 +5,6 @@ module.exports = function(config){
   var maxAge = config.cors.maxAge;
 
   return function (req, res, next) {
-    if (!req.xhr) {
-      return next();
-    }
     if (config.app.origin.indexOf(req.header('Origin')) === -1){
       res.statusCode = 200;
       return res.end();

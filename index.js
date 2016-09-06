@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var config = require('./config/'+(process.env.NODE_ENV || 'local')+'.json');
 var app = express();
 app.set('trust proxy', true);
-app.set('json spaces', config.app.jsonSpaces || 0);
 app.use(methodOverride);
 app.use(cors(config));
 app.use(response(config));

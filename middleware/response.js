@@ -4,7 +4,7 @@ var errors = require('../config/errors.json');
 module.exports = function(config){
 
   var response = function(req, res, result){
-    if (req.is('xml') || req.query.responseFormat === 'xml'){
+    if (req.query.responseFormat === 'xml' || req.accepts('xml') || req.is('xml')){
       res.set('Content-Type', 'text/xml');
       res.send(json2xml({response: result}, {header: true}));
     } else {
