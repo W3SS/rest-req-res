@@ -17,6 +17,7 @@ Beginning
 var request = require('request');
 var express = require('express');
 var app = express();
+var router = express.Router();
 var config = require('./config.json');
 var rest = require('rest-req-res');
 config.errors = require('./errors.json');
@@ -26,7 +27,7 @@ rest(app);
 
 Success response
 ``` javascript
-app.get('/success', function(req, res){
+router.get('/success', function(req, res){
   res.success({
     resultField1: 'value1',
     resultField2: 'value2'
@@ -39,7 +40,7 @@ app.get('/success', function(req, res){
 
 Error response
 ``` javascript
-app.get('/error', function(req, res) {
+router.get('/error', function(req, res) {
   res.error('CONFLICT', {
     details1: 'value1',
     details2: 'value2'
@@ -47,6 +48,46 @@ app.get('/error', function(req, res) {
 });
 ```
 
+Mounting
+``` javascript
 app.use('/'+config.api.version, router);
 app.listen(config.app.port, config.app.host);
+```
+
+Config example `./config.json`
+``` json
+{
+  "app": {
+    "port": 8080,
+    "host": "127.0.0.1"
+  },
+  "api": {
+    "version": "v1",
+    "origin": ["Test", null]
+  },
+  "cors": {
+    "maxAge": 86400,
+    "allowHeaders": [
+      "Content-Type", "Accept", "Origin", "X-HTTP-Method-Override", "User-Agent", "Authorization",
+      "Cache-Control", "Keep-Alive", "X-Requested-With", "If-Modified-Since"
+    ],
+    "allowMethods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+  }
+}
+```
+
+Errors example `./errors.json`
+``` json
+{
+  "BAD_REQUEST": {"code": 400, "status": 400, "message": "Bad Request"},
+  "UNAUTHORIZED": {"code": 401, "status": 401, "message": "Unauthorized"},
+  "FORBIDDEN": {"code": 403, "status": 403, "message": "Forbidden"},
+  "NOT_FOUND": {"code": 404, "status": 404, "message": "Not Found"},
+  "METHOD_NOT_ALLOWED": {"code": 405, "status": 405, "message": "Method Not Allowed"},
+  "REQUEST_TIMEOUT": {"code": 408, "status": 408, "message": "Request Timeout"},
+  "CONFLICT": {"code": 409, "status": 409, "message": "Conflict"},
+  "INTERNAL_SERVER_ERROR": {"code": 500, "status": 500, "message": "Internal Server Error"},
+  "SERVICE_UNAVAILABLE": {"code": 503, "status": 503, "message": "Service Unavailable"},
+  "UNKNOWN_ERROR": {"code": 520, "status": 520, "message": "Unknown Error"}
+}
 ```
