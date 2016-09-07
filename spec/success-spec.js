@@ -26,12 +26,7 @@ describe('Success response', function(){
   });
 
   it('should respond status 200 and result', function(done){
-    request.get({
-      url: 'http://127.0.0.1:31288/v1/success',
-      headers: {
-        'Origin': 'Test'
-      }
-    }, function(error, response, body) {
+    request.get('http://127.0.0.1:31288/v1/success', function(error, response, body) {
       var _body = '<?xml version="1.0" encoding="UTF-8"?>'+
         '<response><version>v1</version><status>200</status>'+
         '<meta><test>true</test></meta><result><test>true</test>'+

@@ -6,7 +6,8 @@
   "api": {
     "version": "v1",
     "origin": [
-      "Test"
+      "Test",
+      null
     ]
   },
   "cors": {
