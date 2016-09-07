@@ -110,7 +110,7 @@ If `POST http://url?httpMethod=put` then handle as `PUT http://url`
 
 ### Request Content-Type header
 
-Request headers
+Supported Content-Type
 ``` http
 Content-Type: application/xml
 Content-Type: application/json
@@ -123,6 +123,42 @@ If `Content-Type: application/xml` and body
 then server will parse request body as
 ``` json
 {
-  "test": '1'
+  "test": "1"
 }
 ```
+
+### Request Accept header
+
+Supported Accept
+``` http
+Accept: application/xml
+Accept: application/json
+```
+
+URL query parameter
+```
+?responseFormat=xml
+?responseFormat=json
+```
+
+### Response status code
+
+URL query parameter
+```
+?forcedResponseStatus=200
+```
+
+## Development
+
+Run tests
+``` bash
+npm run test
+```
+
+Run watch files and autostart test
+``` bash
+npm run watch
+```
+
+## License
+ISC
