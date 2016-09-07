@@ -5,12 +5,21 @@ module.exports = function(config){
   var errors = config.errors || {};
 
   var response = function(req, res, result){
-    if (req.query.responseFormat === 'xml' || req.accepts('xml') || req.is('xml')){
-      res.set('Content-Type', 'text/xml');
+    if (req.query.responseFormat === 'xml') {
+      res.set('Content-Type', 'application/xml');
       res.send(json2xml({response: result}, {header: true}));
-    } else {
-      res.json(result);
+      return;
     }
+    if (req.query.responseFormat === 'json') {
+      res.json(result);
+      return;
+    }
+    if (req.accepts('xml') || req.is('xml')){
+      res.set('Content-Type', 'application/xml');
+      res.send(json2xml({response: result}, {header: true}));
+      return;
+    }
+    res.json(result);
   };
 
   var successResponse = function(req, res, data, status, meta){

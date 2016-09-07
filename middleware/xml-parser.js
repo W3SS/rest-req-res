@@ -16,7 +16,7 @@ module.exports = function(req, res, next){
         explicitArray: false
       }, function(err, result){
         if (!err){
-          req.body = result.body || {};
+          req.body = result || {};
         } else {
           return res.error('BAD_REQUEST');
         }
