@@ -91,3 +91,38 @@ Errors example `./errors.json`
   "UNKNOWN_ERROR": {"code": 520, "status": 520, "message": "Unknown Error"}
 }
 ```
+
+### Method Override
+
+Request headers
+``` http
+X-HTTP-Method: PUT
+X-HTTP-Method-Override: PUT
+X-Method-Override: PUT
+```
+
+URL query parameter
+```
+?httpMethod=put
+```
+
+If `POST http://url?httpMethod=put` then handle as `PUT http://url`
+
+### Request Content-Type header
+
+Request headers
+``` http
+Content-Type: application/xml
+Content-Type: application/json
+```
+
+If `Content-Type: application/xml` and body
+``` xml
+<?xml version="1.0" encoding="UTF-8"?><test>1</test>
+```
+then server will parse request body as
+``` json
+{
+  "test": '1'
+}
+```
