@@ -1,17 +1,36 @@
 {
-  "name": "node-blank-api",
+  "name": "rest-req-res",
   "version": "1.2.11",
-  "description": "Blank to develop api",
+  "description": "REST API helper, json and xml format, cors, methods override",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "./node_modules/.bin/jasmine-node spec --color --verbose --autotest --watch spec/ middleware/ index.js",
+    "test": "./node_modules/.bin/jasmine-node spec --color --verbose"
   },
   "author": "Vasily Shilov (shcoder.ru@ya.ru)",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shcoder-ru/rest-req-res.git"
+  },
+  "keywords": [
+    "rest",
+    "api",
+    "cors",
+    "json",
+    "xml"
+  ],
+  "bugs": {
+    "url": "https://github.com/shcoder-ru/rest-req-res/issues"
+  },
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "express": "^4.14.0",
     "json2xml": "^0.1.2",
     "xml2js": "^0.4.17"
+  },
+  "devDependencies": {
+    "express": "^4.14.0",
+    "jasmine-node": "^1.14.5",
+    "request": "^2.74.0"
   }
 }

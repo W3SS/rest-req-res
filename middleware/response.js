@@ -1,7 +1,8 @@
 var json2xml = require('json2xml');
-var errors = require('../config/errors.json');
 
 module.exports = function(config){
+
+  var errors = config.errors || {};
 
   var response = function(req, res, result){
     if (req.query.responseFormat === 'xml' || req.accepts('xml') || req.is('xml')){
@@ -15,7 +16,7 @@ module.exports = function(config){
   var successResponse = function(req, res, data, status, meta){
     var result = {};
     status = status || 200;
-    result.version = config.app.version;
+    result.version = config.api.version;
     result.status = status;
     if (meta){
       result.meta = meta;
@@ -32,7 +33,7 @@ module.exports = function(config){
     var status, result = {};
     err = err && errors[err] ? err : 'UNKNOWN_ERROR';
     status = errors[err].status;
-    result.version = config.app.version;
+    result.version = config.api.version;
     result.status = status;
     result.error = {
       code: errors[err].code,
