@@ -14,7 +14,6 @@ npm install rest-req-res
 
 Beginning
 ``` javascript
-var request = require('request');
 var express = require('express');
 var app = express();
 var router = express.Router();
