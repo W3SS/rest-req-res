@@ -10,7 +10,7 @@
   "author": "Vasily Shilov (shcoder.ru@ya.ru)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shcoder-ru/rest-req-res.git"
+    "url": "https://github.com/uxter/rest-req-res.git"
   },
   "keywords": [
     "rest",
@@ -20,7 +20,7 @@
     "xml"
   ],
   "bugs": {
-    "url": "https://github.com/shcoder-ru/rest-req-res/issues"
+    "url": "https://github.com/uxter/rest-req-res/issues"
   },
   "license": "ISC",
   "dependencies": {
